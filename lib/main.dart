@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:toonflix/toonflix_data/api/api_service.dart';
 import 'package:toonflix/toonflix_ui/main_screen.dart';
 
 void main() {
+  ApiService.getTodaysToons();
   runApp(const MyApp());
 }
 
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
         cardColor: const Color(0xFFF4EDDB),
       ),
-      home: const MainScreen(),
+      home: MainScreen(),
     );
   }
 }
