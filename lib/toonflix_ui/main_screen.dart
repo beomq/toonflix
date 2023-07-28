@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/toonflix_data/api/api_service.dart';
 import 'package:toonflix/toonflix_data/model/weebtoon_model.dart';
-import 'package:toonflix/toonflix_widget/webtoon_widget.dart';
+import 'package:toonflix/toonflix_widgets/webtoon_widget.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
