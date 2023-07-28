@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/toonflix_data/api/api_service.dart';
-import 'package:toonflix/toonflix_data/model/toon_model.dart';
+import 'package:toonflix/toonflix_data/model/weebtoon_model.dart';
+import 'package:toonflix/toonflix_widget/webtoon_widget.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
-  final Future<List<ToonModel>> toons = ApiService.getTodaysToons();
+  final Future<List<WebtoonModel>> toons = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
@@ -43,45 +44,17 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  ListView makeList(AsyncSnapshot<List<ToonModel>> snapshot) {
+  ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       scrollDirection: Axis.horizontal,
       itemCount: snapshot.data!.length,
       itemBuilder: (BuildContext context, int index) {
         var toon = snapshot.data![index];
-        return Column(
-          children: [
-            Container(
-              width: 250,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 15,
-                      offset: const Offset(10, 10),
-                      color: Colors.black.withOpacity(0.5),
-                    )
-                  ]),
-              child: Image.network(
-                toon.thumb,
-                headers: const {
-                  "User-Agent":
-                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              toon.title,
-              style: const TextStyle(
-                fontSize: 22,
-              ),
-            ),
-          ],
+        return WebtoonWidget(
+          title: toon.title,
+          thumb: toon.thumb,
+          id: toon.id,
         );
       },
       separatorBuilder: (BuildContext context, int index) => const SizedBox(

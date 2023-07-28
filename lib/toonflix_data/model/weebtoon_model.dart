@@ -1,5 +1,5 @@
-class ToonModel {
-  ToonModel({
+class WebtoonModel {
+  WebtoonModel({
     required this.id,
     required this.title,
     required this.thumb,
@@ -8,7 +8,7 @@ class ToonModel {
   late final String title;
   late final String thumb;
 
-  ToonModel.fromJson(Map<String, dynamic> json) {
+  WebtoonModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     thumb = json['thumb'];
